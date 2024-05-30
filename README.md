@@ -28,12 +28,12 @@ $$
 $$
 
 $$
-    \boldsymbol{F}^v = \left(\begin{array}{cc}
+    \boldsymbol{F}^v = \mu\left(\begin{array}{cc}
     0 & 0\\
     4/3 u_x - 2/3v_y & v_x + u_y\\
     u_y + v_x & 4/3 v_y - 2/3u_x \\
-    u(4/3 u_x - 2/3v_y) + v(u_y + v_x) + \lambda T_x & 
-    v(4/3 v_y - 2/3u_x) + u(v_x + u_y) + \lambda T_y
+    u(4/3 u_x - 2/3v_y) + v(u_y + v_x) + \frac{\lambda}{\mu} T_x & 
+    v(4/3 v_y - 2/3u_x) + u(v_x + u_y) + \frac{\lambda}{\mu} T_y
     \end{array}\right)
 $$
 
