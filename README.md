@@ -25,7 +25,9 @@ $$
     \rho u v & \rho v v+p \\
     u(\rho E+p) & v(\rho E+p)
     \end{array}\right),
-    \\
+$$
+
+$$
     \boldsymbol{F}^v = \left(\begin{array}{cc}
     0 & 0\\
     4/3 u_x - 2/3v_y & v_x + u_y\\
