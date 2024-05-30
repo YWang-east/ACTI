@@ -1,0 +1,43 @@
+// case, limiter, compressible/isothermal, inviscid/viscous
+
+testCase        2       // 1: shock tube; 2: mixing layer; 3: shock boundary layer
+limiterType1    5       // 0: 1st order; 1: minmod; 3: superbee; 4: von Alba 2; 5:Koren;
+limiterType2    5       // limiter in the transverse dir
+viscous         1       // viscous flow? 
+Re              1.0
+Ma              0.01
+theta           45      // oblique shock angle in degree
+
+// time, time stepping and plotting
+
+localTS         1       // local time stepping?
+T               0.01    // solution time
+T_hat           0.2     // dimensionless time for mixing layer case
+itmax           1000000 // maximum time steps
+cfl             0.25
+alpha_diff      0.25
+plotInterval    1000
+
+// size of domain and grid
+
+lx              1.0
+ly              1.0
+nx              128
+ny              128
+fineness        0.9
+Xrefine         1       // refine grid in x-dir?
+Yrefine         1       // refine grid in y-dir?
+
+// reference flow states
+
+rho_ref         1.0
+u_ref           100.0
+v_ref           0.0
+p_ref           1e5
+
+// boundary conditions (1: inflow; 2: periodic; 3: free-slip wall; 4: no-slip wall; 0: default - Neumann)
+
+left            2    
+right           2
+bottom          2
+top             2

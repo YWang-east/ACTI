@@ -1,0 +1,42 @@
+// case, limiter, compressible/isothermal, inviscid/viscous
+
+testCase        1
+limiterType1    5 
+limiterType2    0
+viscous         0 
+Re              0.25
+Ma              0.002
+theta           45  
+
+// time, time stepping and plotting
+
+localTS         1
+T               0.0006
+itmax           1000000
+cfl             0.5
+alpha_diff      0.25
+plotInterval    5000
+
+// size of domain and grid
+
+lx              1.0
+ly              1.0
+nx              400
+ny              1
+fineness        0.99
+Xrefine         1
+Yrefine         0
+
+// inflow conditions
+
+rho_ref         1.0
+u_ref           100.0
+v_ref           0.0
+p_ref           1e5
+
+// boundary conditions (1: inflow; 2: periodic; 3: free-slip wall; 4: no-slip wall; 0: default - Neumann)
+
+left            0    
+right           0
+bottom          0
+top             0
