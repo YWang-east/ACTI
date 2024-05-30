@@ -2,12 +2,15 @@
 # Adaptive Conservative Time Integration (ACTI)
 
 This code use ACTI to solve the 2D compressible Navier-Stokes equation:
+
 $$
     \frac{\partial \boldsymbol{U}}{\partial t} +
     \nabla \cdot (\boldsymbol{F}^c - \boldsymbol{F}^v)
     =\mathbf{0},
 $$
+
 where
+
 $$
     \boldsymbol{U} = \left(\begin{array}{c}
     \rho \\
@@ -31,7 +34,6 @@ $$
     v(4/3 v_y - 2/3u_x) + u(v_x + u_y) + \lambda T_y
     \end{array}\right)
 $$
-
 
 <!-- omit in toc -->
 ## Table of Contents
