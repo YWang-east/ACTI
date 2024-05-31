@@ -44,6 +44,7 @@ $$
 - [Usage](#usage)
   - [Create your own case](#create-your-own-case)
   - [Add new input parameters](#add-new-input-parameters)
+- [References](#references)
 
 ## Getting Started
 
@@ -132,3 +133,23 @@ int  VAR_INT  = ctr.getInt("YOUR_INT_PARAMETER");
 bool VAR_BOOL = ctr.getBool("YOUR_BOOL_PARAMETER");
 ```
 
+## References
+```LaTeX
+@article{jenny_2020,
+    title = {Time adaptive conservative finite volume method},
+    volume = {403},
+    doi = {10.1016/j.jcp.2019.109067},
+    journal = {Journal of Computational Physics},
+    author = {Jenny, Patrick},
+    year = {2020},
+}
+
+@article{kulka_2022,
+    title = {Temporally adaptive conservative scheme for unsteady compressible flow},
+    volume = {455},
+    doi = {10.1016/j.jcp.2021.110918},
+    journal = {Journal of Computational Physics},
+    author = {Kulka, Valérie and Jenny, Patrick},
+    year = {2022},
+}
+```

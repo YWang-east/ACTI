@@ -1,3 +1,9 @@
+/*
+ *  cell.cpp
+ *
+ *  Created by Yijun Wang on 30.11.22.
+ *
+ */
 #include "cell.h"
 
 int Grid::_i(int i) {

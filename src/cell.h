@@ -1,3 +1,10 @@
+/*
+ *  cell.h
+ *
+ *  Created  by Patrick Jenny on 17.04.2019
+ *  Modified by Yijun Wang and Jonas Luther on 19.01.24.
+ *
+ */
 #ifndef _Cell_h
 #define _Cell_h
 
