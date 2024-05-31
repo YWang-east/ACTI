@@ -1,6 +1,20 @@
 <!-- omit in toc -->
 # Adaptive Conservative Time Integration (ACTI)
 
+**Authors: Jonas Luther, Yijun Wang and Patrick Jenny**
+**©2016-​2021 Institute of Fluid Dynamics, ETH Zurich**
+
+<!-- omit in toc -->
+## Table of Contents
+- [Governing Equations](#governing-equations)
+- [Getting Started](#getting-started)
+- [Architecture](#architecture)
+- [Usage](#usage)
+  - [Create your own case](#create-your-own-case)
+  - [Add new input parameters](#add-new-input-parameters)
+- [References](#references)
+
+## Governing Equations
 This code use ACTI to solve the 2D compressible Navier-Stokes equation:
 
 $$
@@ -36,15 +50,6 @@ $$
     v(4/3 v_y - 2/3u_x) + u(v_x + u_y) + \frac{\lambda}{\mu} T_y
     \end{array}\right)
 $$
-
-<!-- omit in toc -->
-## Table of Contents
-- [Getting Started](#getting-started)
-- [Architecture](#architecture)
-- [Usage](#usage)
-  - [Create your own case](#create-your-own-case)
-  - [Add new input parameters](#add-new-input-parameters)
-- [References](#references)
 
 ## Getting Started
 
