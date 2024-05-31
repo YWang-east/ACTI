@@ -2,7 +2,7 @@
 # Adaptive Conservative Time Integration (ACTI)
 
 **Authors: Jonas Luther, Yijun Wang and Patrick Jenny**
-**©2016-​2021 Institute of Fluid Dynamics, ETH Zurich**
+**©Institute of Fluid Dynamics, ETH Zurich**
 
 <!-- omit in toc -->
 ## Table of Contents
