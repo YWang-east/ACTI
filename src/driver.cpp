@@ -11,8 +11,11 @@
 #include <math.h>
 #include <algorithm>
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
+
+#define OUTPUT_PRECISION 15
 
 double Driver::slope (int limiterType, double s1, double s2)
 {
@@ -350,7 +353,7 @@ void Driver::setupCase(Control          &c,
     for (int i=0; i<nx; i++) {
         double hx;
         if (Xrefine == 1) {
-            hx = lx/double(nx)*(1+fineness*cos(((double(i)+0.5)/double(nx))*2.0*3.1415));
+            hx = lx/double(nx)*(1+fineness*cos(((double(i)+0.5)/double(nx))*2.0*M_PI));
         }
         else {
             hx = lx/double(nx);
@@ -364,7 +367,7 @@ void Driver::setupCase(Control          &c,
                 if (testCase==3) // boundary layer
                     hy = ly * (fineness* ((double(j)+1)*(double(j)+2) - double(j)*(double(j)+1)) / ((double(ny)+1)*double(ny)) + (1-fineness)/double(ny));
                 else
-                    hy = ly/double(ny)*(1+fineness*cos(((double(j)+0.5)/double(ny))*2.0*3.1415));
+                    hy = ly/double(ny)*(1.0+fineness*cos(((double(j)+0.5)/double(ny))*2.0*M_PI));
             }
             else {
                 hy = ly/double(ny);
@@ -516,7 +519,7 @@ void Driver::run2D_acti(string dir)
     double T_hat        = c.getDouble("T_hat");
     
     if (testCase==2) {
-        T = sqrt(2.0) / (4*3.1416*3.1416) * Re * T_hat;
+        T = sqrt(2.0) / (4.0*M_PI*M_PI) * Re * T_hat;
         cout << "Solution time for mixing layer case: " << T << endl;
     }
     
@@ -524,7 +527,7 @@ void Driver::run2D_acti(string dir)
     //  initialization
     ///
     /// 1. solution output
-    ofstream result, case_info;
+    ofstream result, case_info, time_info, initial;
     
     /// 2. Grids and fields
     vector <Cell>       cell   ( nx   * ny   );
@@ -543,8 +546,43 @@ void Driver::run2D_acti(string dir)
 
     // write a case info file
     case_info.open(dir + "case_info.csv");
+    case_info << fixed << setprecision(OUTPUT_PRECISION);
     case_info << "case,nx,ny,dim,T_hat" << endl;
     case_info << testCase << "," << nx << "," << ny << "," << dim << "," << T_hat << endl;
+    case_info.close();
+
+    // record time evolution
+    time_info.open(dir + "time_info.csv");
+    time_info << "t" << endl;
+
+    // write the initial condition
+    initial.open(dir + "initial.csv");
+    initial <<"x,y,rho,u,v,p,T,dt/dtmax,level,rhou,rhoE,hx,hy" << endl;
+    initial << fixed << setprecision(OUTPUT_PRECISION);
+    for (int i=0; i<nx; i++) {
+        for (int j=0; j<ny; j++) {
+            int ic = i*ny+j;
+
+            double r = cell[ic].u()[0];
+
+            initial
+            << cell[ic].x() << ","         // x
+            << cell[ic].y() << ","         // y
+            << cell[ic].u()[0]      << "," // rho
+            << cell[ic].u()[1]/r    << "," // u
+            << cell[ic].u()[2]/r    << "," // v
+            << cell[ic].u()[4]      << "," // p
+            << cell[ic].u()[5]      << "," // T
+            << cell[ic].dt_ratio()  << "," // dt/dtmax
+            << cell[ic].l()         << "," // level
+            << cell[ic].u()[1]      << "," // x momentum
+            << cell[ic].u()[3]      << "," // energy
+            << cell[ic].hx()        << "," // grid size x
+            << cell[ic].hy()               // grid size y
+            << endl;
+        }
+    }
+    initial.close();
 
     //////
     // counters - initialization
@@ -915,6 +953,10 @@ void Driver::run2D_acti(string dir)
 
             // write headers
             result <<"i,j,x,y,rho,u,v,p,T,Ma,dt/dtmax,div_r,omega,level,rhou,rhoE,hx,hy" << endl;
+            result << fixed << setprecision(OUTPUT_PRECISION);
+
+            time_info << fixed << setprecision(OUTPUT_PRECISION);
+            time_info << t << endl;
 
             for (int i=0; i<nx; i++) {
                 for (int j=0; j<ny; j++) {
@@ -958,6 +1000,7 @@ void Driver::run2D_acti(string dir)
         }
     } // while (t<T)
     
+    time_info.close();
     time = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
     
     cout << endl;
