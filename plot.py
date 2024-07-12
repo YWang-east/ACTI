@@ -6,7 +6,7 @@ import glob
 plt.rcParams['text.usetex'] = True
 plt.rcParams["font.family"] = "Times New Roman"
 
-pi = 3.1415926
+pi = 3.14159265359
 
 path = 'run/'
 
@@ -36,6 +36,9 @@ y   = data['y'].to_numpy()
 rho = data['rho'].to_numpy()
 u   = data['u'].to_numpy()
 p   = data['p'].to_numpy()
+l   = data['level'].to_numpy()
+
+plot_quantity = rho
 
 #---------------------------#
 # Case-wise visualization   #
@@ -69,15 +72,15 @@ if (case == 2):
 # 1D case       #
 #---------------#
 elif dim == 1:  
-    ax.plot(x, rho, 'o', markersize=3, markerfacecolor='none', c='k')
-    ax.set_ylabel(r'$\rho$', fontsize=15)
+    ax.plot(x, plot_quantity, 'o', markersize=3, markerfacecolor='none', c='k')
+    # ax.set_ylabel(r'$\rho$', fontsize=15)
 #---------------#
 # 2D case       #
 #---------------#
 elif dim == 2:
     x = np.reshape(x, (nx,ny))
     y = np.reshape(y, (nx,ny))
-    r = np.reshape(rho, (nx,ny))
+    r = np.reshape(plot_quantity, (nx,ny))
 
     plt.pcolormesh(x, y, r)
     ax.set_aspect(1)

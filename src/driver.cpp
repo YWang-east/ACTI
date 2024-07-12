@@ -15,7 +15,7 @@
 
 using namespace std;
 
-#define OUTPUT_PRECISION 15
+#define OUTPUT_PRECISION 16
 
 double Driver::slope (int limiterType, double s1, double s2)
 {
@@ -472,10 +472,10 @@ void Driver::timestepSize(Control          &contr,
                                                       cell[ic].hy()*cell[ic].hy()));
         }
     }
-    dt_max = max_element(cellMap.begin(), cellMap.end(), CellMap::compare_dt)->dt() + 1e-15;
+    dt_max = max_element(cellMap.begin(), cellMap.end(), CellMap::compare_dt)->dt();
     dt_min = min_element(cellMap.begin(), cellMap.end(), CellMap::compare_dt)->dt();
     for (int ic=0; ic<nx*ny; ic++) {
-        if (cell[ic].dt() > dt_max-1e-15) cell[ic].dt() = dt_max - 1e-15;
+        if (cell[ic].dt() > dt_max) cell[ic].dt() = dt_max;
     }
     for (int ic=0; ic<nx*ny; ic++) {
         double dt_old = cell[ic].dt();
@@ -528,6 +528,7 @@ void Driver::run2D_acti(string dir)
     ///
     /// 1. solution output
     ofstream result, case_info, time_info, initial;
+    int filecount = 0;
     
     /// 2. Grids and fields
     vector <Cell>       cell   ( nx   * ny   );
@@ -554,11 +555,14 @@ void Driver::run2D_acti(string dir)
     // record time evolution
     time_info.open(dir + "time_info.csv");
     time_info << "t" << endl;
+    time_info << fixed << setprecision(OUTPUT_PRECISION);
+    time_info << 0.0 << endl;
 
     // write the initial condition
-    initial.open(dir + "initial.csv");
+    initial.open(dir + "Data_" + to_string(filecount) + ".csv");
     initial <<"x,y,rho,u,v,p,T,dt/dtmax,level,rhou,rhoE,hx,hy" << endl;
     initial << fixed << setprecision(OUTPUT_PRECISION);
+    filecount++;
     for (int i=0; i<nx; i++) {
         for (int j=0; j<ny; j++) {
             int ic = i*ny+j;
@@ -948,7 +952,8 @@ void Driver::run2D_acti(string dir)
         //  Intermediate solution to file
         ///
         if (it%plotInterval == 0 || t==T || it==itmax) {
-            string filename = dir + "Data_" + to_string(t) + ".csv";
+            string filename = dir + "Data_" + to_string(filecount) + ".csv";
+            filecount++;
             result.open(filename);
 
             // write headers
