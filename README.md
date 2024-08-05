@@ -140,13 +140,14 @@ bool VAR_BOOL = ctr.getBool("YOUR_BOOL_PARAMETER");
 
 ## References
 ```LaTeX
-@article{jenny_2020,
-    title = {Time adaptive conservative finite volume method},
-    volume = {403},
-    doi = {10.1016/j.jcp.2019.109067},
+@article{LUTHER_WANG_2024,
+    title = {Adaptive Conservative Time Integration for Unsteady Compressible Flow},
     journal = {Journal of Computational Physics},
-    author = {Jenny, Patrick},
-    year = {2020},
+    year = {2024},
+    issn = {0021-9991},
+    doi = {https://doi.org/10.1016/j.jcp.2024.113324},
+    url = {https://www.sciencedirect.com/science/article/pii/S0021999124005722},
+    author = {Jonas Luther and Yijun Wang and Patrick Jenny},
 }
 
 @article{kulka_2022,
@@ -156,5 +157,14 @@ bool VAR_BOOL = ctr.getBool("YOUR_BOOL_PARAMETER");
     journal = {Journal of Computational Physics},
     author = {Kulka, Valérie and Jenny, Patrick},
     year = {2022},
+}
+
+@article{jenny_2020,
+    title = {Time adaptive conservative finite volume method},
+    volume = {403},
+    doi = {10.1016/j.jcp.2019.109067},
+    journal = {Journal of Computational Physics},
+    author = {Jenny, Patrick},
+    year = {2020},
 }
 ```
