@@ -5,3 +5,6 @@ run/
 build/
 *.sh
 *.csv
+Makefile
+make*
+discrete_conservation.py
