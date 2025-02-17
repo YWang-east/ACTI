@@ -3,6 +3,9 @@
 .cache/
 run/
 build/
+!docs/build/
+docs/build/doctrees/
+docs/build/html/_static/
 *.sh
 *.csv
 Makefile
